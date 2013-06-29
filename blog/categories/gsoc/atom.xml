@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GSoc | My RTEMS GSOC Blog]]></title>
   <link href="http://WeiY.github.io/blog/categories/gsoc/atom.xml" rel="self"/>
   <link href="http://WeiY.github.io/"/>
-  <updated>2013-06-29T16:46:22+08:00</updated>
+  <updated>2013-06-29T17:05:39+08:00</updated>
   <id>http://WeiY.github.io/</id>
   <author>
     <name><![CDATA[WeiY]]></name>
@@ -20,7 +20,7 @@
     <id>http://WeiY.github.io/blog/2013/06/29/my-first-blog</id>
     <content type="html"><![CDATA[<p>Today i have setup the github blog envrionment. Then i will record the progress and the detail of the GSoc project.</p>
 
-<p>This year i will continue to doing the project &ldquo;Atomic support for RTEMS&rdquo;, my mentor is Sebastian Huber who is working on the ARM SMP support for RTEMS. And the Atomic support is very useful for SMP system.</p>
+<p>This year i will continue to doing the project &ldquo;Atomic support for RTEMS&rdquo;, my mentor is Sebastian Huber who is working on the ARM SMP support for RTEMS. And the Atomic support is very useful for SMP system. You can also reference the project wiki <a href="http://wiki.rtems.org/wiki/index.php/Atomic_Operations" title="Atomic_Operations">Atomic_Operations</a> and my GSoc proposal <a href="https://docs.google.com/document/d/1kZtTwyw8xBzGSz-n8xFcTuD5KSrEpnzzq860wMaQtCU/edit#" title="Atomic Operations and SMP lock debug tool for RTEMS">Atomic Operations and SMP lock debug tool for RTEMS</a></p>
 
 <p>I am looking forward and enjoying this summer!</p>
 ]]></content>
