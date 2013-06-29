@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My RTEMS GSOC Blog]]></title>
-  <link href="http://WeiY.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: GSoc | My RTEMS GSOC Blog]]></title>
+  <link href="http://WeiY.github.io/blog/categories/gsoc/atom.xml" rel="self"/>
   <link href="http://WeiY.github.io/"/>
   <updated>2013-06-29T16:46:22+08:00</updated>
   <id>http://WeiY.github.io/</id>
