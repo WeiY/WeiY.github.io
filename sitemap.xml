@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://weiy.github.com/blog/2013/06/29/my-first-blog/</loc>
+        <lastmod>2013-06-29T11:17:49+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://weiy.github.com/</loc>
+        <lastmod>2013-06-29T11:17:49+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://weiy.github.com/blog/archives/</loc>
+        <lastmod>2013-06-29T11:17:49+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://weiy.github.com/robots.txt</loc>
+        <lastmod>2013-06-29T11:09:00+08:00</lastmod>
+    </url>
+</urlset>
