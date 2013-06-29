@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://weiy.github.com/sitemap.xml 
+Sitemap: http://WeiY.github.io/sitemap.xml 

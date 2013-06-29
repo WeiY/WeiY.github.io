@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[My RTEMS GSOC Blog]]></title>
-  <link href="http://weiy.github.com/atom.xml" rel="self"/>
-  <link href="http://weiy.github.com/"/>
-  <updated>2013-06-29T11:20:51+08:00</updated>
-  <id>http://weiy.github.com/</id>
+  <link href="http://WeiY.github.io/atom.xml" rel="self"/>
+  <link href="http://WeiY.github.io/"/>
+  <updated>2013-06-29T16:03:54+08:00</updated>
+  <id>http://WeiY.github.io/</id>
   <author>
     <name><![CDATA[WeiY]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[My first blog]]></title>
-    <link href="http://weiy.github.com/blog/2013/06/29/my-first-blog/"/>
+    <link href="http://WeiY.github.io/blog/2013/06/29/my-first-blog/"/>
     <updated>2013-06-29T11:17:00+08:00</updated>
-    <id>http://weiy.github.com/blog/2013/06/29/my-first-blog</id>
+    <id>http://WeiY.github.io/blog/2013/06/29/my-first-blog</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>
