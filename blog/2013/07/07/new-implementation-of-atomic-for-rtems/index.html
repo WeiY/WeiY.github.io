@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My RTEMS GSOC Blog</title>
+  <title>New implementation of atomic for RTEMS - My RTEMS GSOC Blog</title>
   <meta name="author" content="WeiY">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://WeiY.github.io">
+  <link rel="canonical" href="http://WeiY.github.io/blog/2013/07/07/new-implementation-of-atomic-for-rtems">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="My RTEMS GSOC Blog" type="application/atom+xml">
@@ -63,15 +63,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/07/07/new-implementation-of-atomic-for-rtems/">New Implementation of Atomic for RTEMS</a></h1>
+      <h1 class="entry-title">New Implementation of Atomic for RTEMS</h1>
     
     
       <p class="meta">
@@ -94,7 +91,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Now lots of operation system have support their own atomic implementation. In the last year&rsquo;s GSOC project i have also design atomic API for RTEMS and also ported the architecture-dependent implementation from FreeBSD to RTEMS. In the original design i have consider the roadmap of the atomic support for RTEMS, its first principle is to be easy to move to the C11 atomic implementation. Now it is time to move to C11 atomic because GCC4.8 and clang3.3 have supported this feature already.</p>
+<div class="entry-content"><p>Now lots of operation system have support their own atomic implementation. In the last year&rsquo;s GSOC project i have also design atomic API for RTEMS and also ported the architecture-dependent implementation from FreeBSD to RTEMS. In the original design i have consider the roadmap of the atomic support for RTEMS, its first principle is to be easy to move to the C11 atomic implementation. Now it is time to move to C11 atomic because GCC4.8 and clang3.3 have supported this feature already.</p>
 
 <p>My mentor Sebastian Huber have ported the stdatomic.h from FreeBSD to newlib. You can build it from the RSB(Rtems Source Builder). The build command is as follow (I build it not based on the latest RSB, If the latest RSB support stdatomic.h ignore me):</p>
 
@@ -151,22 +148,16 @@
 * New test cased design.
 * Other architectures support.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/29/my-first-blog/">My First Blog</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">WeiY</span></span>
+
+      
 
 
 
@@ -178,31 +169,36 @@
   
 
 
-<time datetime="2013-06-29T11:17:00+08:00" pubdate data-updated="true">Jun 29<span>th</span>, 2013</time>
-        
-      </p>
+<time datetime="2013-07-07T14:23:00+08:00" pubdate data-updated="true">Jul 7<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/gsoc/'>GSoc</a>, <a class='category' href='/blog/categories/rtems/'>RTEMS</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>Today i have setup the github blog envrionment. Then i will record the progress and the detail of the GSoc project.</p>
-
-<p>This year i will continue to doing the project &ldquo;Atomic support for RTEMS&rdquo;, my mentor is Sebastian Huber who is working on the ARM SMP support for RTEMS. And the Atomic support is very useful for SMP system. You can also reference the project wiki <a href="http://wiki.rtems.org/wiki/index.php/Atomic_Operations" title="Atomic_Operations">Atomic_Operations</a> and my GSoc proposal <a href="https://docs.google.com/document/d/1kZtTwyw8xBzGSz-n8xFcTuD5KSrEpnzzq860wMaQtCU/edit#" title="Atomic Operations and SMP lock debug tool for RTEMS">Atomic Operations and SMP lock debug tool for RTEMS</a></p>
-
-<p>I am looking forward and enjoying this summer!</p>
+      <div class="sharing">
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/29/my-first-blog/" title="Previous Post: My first blog">&laquo; My first blog</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -243,6 +239,7 @@
 
   
 </aside>
+
 
     </div>
   </div>

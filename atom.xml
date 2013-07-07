@@ -4,7 +4,7 @@
   <title><![CDATA[My RTEMS GSOC Blog]]></title>
   <link href="http://WeiY.github.io/atom.xml" rel="self"/>
   <link href="http://WeiY.github.io/"/>
-  <updated>2013-06-29T17:05:39+08:00</updated>
+  <updated>2013-07-07T15:07:00+08:00</updated>
   <id>http://WeiY.github.io/</id>
   <author>
     <name><![CDATA[WeiY]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[New implementation of atomic for RTEMS]]></title>
+    <link href="http://WeiY.github.io/blog/2013/07/07/new-implementation-of-atomic-for-rtems/"/>
+    <updated>2013-07-07T14:23:00+08:00</updated>
+    <id>http://WeiY.github.io/blog/2013/07/07/new-implementation-of-atomic-for-rtems</id>
+    <content type="html"><![CDATA[<p>Now lots of operation system have support their own atomic implementation. In the last year&rsquo;s GSOC project i have also design atomic API for RTEMS and also ported the architecture-dependent implementation from FreeBSD to RTEMS. In the original design i have consider the roadmap of the atomic support for RTEMS, its first principle is to be easy to move to the C11 atomic implementation. Now it is time to move to C11 atomic because GCC4.8 and clang3.3 have supported this feature already.</p>
+
+<p>My mentor Sebastian Huber have ported the stdatomic.h from FreeBSD to newlib. You can build it from the RSB(Rtems Source Builder). The build command is as follow (I build it not based on the latest RSB, If the latest RSB support stdatomic.h ignore me):</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git://git.rtems.org/rtems-source-builder.git
+</span><span class='line'><span class="nb">cd </span>rtems-source-builder
+</span><span class='line'>patch -p1 &lt; stdatomic-newlib.patch
+</span><span class='line'><span class="nb">cd </span>rtems
+</span><span class='line'>../source-builder/sb-set-builder --log<span class="o">=</span>l-arm.txt 1 --prefix<span class="o">=</span><span class="nv">$HOME</span>/development/rtems/4.11 4.11/rtems-arm
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>stdatomic-newlib.patch is as follow :</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>diff --git a/rtems/config/tools/rtems-gcc-4.8.1-newlib-cvs-1.cfg b/rtems/config/tools/rtems-gcc-4.8.1-newlib-cvs-1.cfg
+</span><span class='line'>index f39225d..458aa8b 100644
+</span><span class='line'>--- a/rtems/config/tools/rtems-gcc-4.8.1-newlib-cvs-1.cfg
+</span><span class='line'>+++ b/rtems/config/tools/rtems-gcc-4.8.1-newlib-cvs-1.cfg
+</span><span class='line'>@@ -7,7 +7,7 @@
+</span><span class='line'> %include %<span class="o">{</span>_configdir<span class="o">}</span>/versions.cfg
+</span><span class='line'>
+</span><span class='line'> %define gcc_version    4.8.1
+</span><span class='line'>-%define newlib_version 31-May-2013
+</span><span class='line'>+%define newlib_version 15-June-2013
+</span><span class='line'> %define mpfr_version   3.0.1
+</span><span class='line'> %define mpc_version    0.8.2
+</span><span class='line'> %define gmp_version    5.0.5
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For mow information about RSB usage please refer the <a href="http://www.rtems.org/ftp/pub/rtems/people/chrisj/source-builder/source-builder.html" title="RTEMS Source Builder">RTEMS Source Builder</a></p>
+
+<p>If everything is ok you will see the toolchains have been installed under $HOME/development/rtems/4.11.</p>
+
+<p>This week i have finished the new atomic API design and implementation for arm architecture based on the stdatomic.h. But now it is only working on SMP mode (tested on bsp realview_pbx_a9_qemu), the TODO list in later will be:
+* Add the check to whether some architecture support stdatomic.h
+* New test cased design.
+* Other architectures support.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My first blog]]></title>
