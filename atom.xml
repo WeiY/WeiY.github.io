@@ -4,7 +4,7 @@
   <title><![CDATA[My RTEMS GSOC Blog]]></title>
   <link href="http://WeiY.github.io/atom.xml" rel="self"/>
   <link href="http://WeiY.github.io/"/>
-  <updated>2013-07-07T15:07:00+08:00</updated>
+  <updated>2013-07-07T15:16:44+08:00</updated>
   <id>http://WeiY.github.io/</id>
   <author>
     <name><![CDATA[WeiY]]></name>
@@ -70,10 +70,12 @@
 
 <p>If everything is ok you will see the toolchains have been installed under $HOME/development/rtems/4.11.</p>
 
-<p>This week i have finished the new atomic API design and implementation for arm architecture based on the stdatomic.h. But now it is only working on SMP mode (tested on bsp realview_pbx_a9_qemu), the TODO list in later will be:
-* Add the check to whether some architecture support stdatomic.h
-* New test cased design.
-* Other architectures support.</p>
+<p>This week i have finished the new atomic API design and implementation for arm architecture based on the stdatomic.h. But now it is only working on SMP mode (tested on bsp realview_pbx_a9_qemu), the TODO list in later will be:</p>
+
+<pre><code>1.  Add the check to whether some architecture support stdatomic.h
+2.  New test cased design.
+3.  Other architectures support.
+</code></pre>
 ]]></content>
   </entry>
   
