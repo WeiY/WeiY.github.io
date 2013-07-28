@@ -9,7 +9,7 @@
   <meta name="author" content="WeiY">
 
   
-  <meta name="description" content="Now lots of operation system have support their own atomic implementation. In the last year&rsquo;s GSOC project i have also design atomic API for &hellip;">
+  <meta name="description" content="The new atomic API draft design has been completed and the first version has been push into RTEMS mainline. Now the atomic ops implemenation is &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,44 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/28/phase-fiair-test-case/">Phase Fiair Test Case</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-28T23:51:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The new atomic API draft design has been completed and the first version has been push into RTEMS mainline. Now the atomic ops implemenation is dependent on C11 stdatomic.h, so if the toolchain of some architecture does not support stdatomic.h it will not have atomic support(now it will post some error log when in the process of rtems compiling). And arm architecture can build successfully using atomic support. But sparc architecture lack of &lsquo;cas&rsquo; instruction support in the toolchain. About this issue i have post a mail to gcc org <a href="http://gcc.gnu.org/ml/gcc/2013-07/msg00272.html" title="RTEMS Source Builder">atomic support for LEON3 platform</a> and the gcc developer will consider add &lsquo;cas&rsquo; support for LEON3.</p>
+
+<p>Then i am working on the new atomic test case design. The first step is to provide some example about usage of atomic API. There is a good reference about atomic API design and test case design, <a href="http://concurrencykit.org/" title="Concurrency kit">Concurrency kit</a>. It has support many atomic API and also provide lots of test case for according API. Becasue phase fair lock is very important for embedded system such RTEMS, i start port the phase fair lock test case from Concurrency kit to RTEMS. Now it has been completed, code is uploaded to github <a href="https://github.com/WeiY/rtems/commit/25fb61a5252db423b8f55c0d57c151c7271ebfdb" title="phase fair test case">phase fair test case</a>. There is still some problem about the printf under the SMP environment, i will try to make it work and submit to mainline.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -210,6 +248,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/28/phase-fiair-test-case/">Phase Fiair Test Case</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/07/new-implementation-of-atomic-for-rtems/">New Implementation of Atomic for RTEMS</a>
