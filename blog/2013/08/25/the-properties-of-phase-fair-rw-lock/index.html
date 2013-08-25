@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>phase fiair test case - My RTEMS GSOC Blog</title>
+  <title>the properties of phase-fair rw lock - My RTEMS GSOC Blog</title>
   <meta name="author" content="WeiY">
 
   
-  <meta name="description" content="The new atomic API draft design has been completed and the first version has been push into RTEMS mainline. Now the atomic ops implemenation is &hellip;">
+  <meta name="description" content="Phase-fair reader writer locks is a new class of reader-writer locks. Phase-fair rw lock has the following properties: 1. Reader phases and writer &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://WeiY.github.io/blog/2013/07/28/phase-fiair-test-case">
+  <link rel="canonical" href="http://WeiY.github.io/blog/2013/08/25/the-properties-of-phase-fair-rw-lock">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="My RTEMS GSOC Blog" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Phase Fiair Test Case</h1>
+      <h1 class="entry-title">The Properties of Phase-fair Rw Lock</h1>
     
     
       <p class="meta">
@@ -84,16 +84,38 @@
   
 
 
-<time datetime="2013-07-28T23:51:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2013</time>
+<time datetime="2013-08-25T22:58:00+08:00" pubdate data-updated="true">Aug 25<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>The new atomic API draft design has been completed and the first version has been push into RTEMS mainline. Now the atomic ops implemenation is dependent on C11 stdatomic.h, so if the toolchain of some architecture does not support stdatomic.h it will not have atomic support(now it will post some error log when in the process of rtems compiling). And arm architecture can build successfully using atomic support. But sparc architecture lack of &lsquo;cas&rsquo; instruction support in the toolchain. About this issue i have post a mail to gcc org <a href="http://gcc.gnu.org/ml/gcc/2013-07/msg00272.html" title="RTEMS Source Builder">atomic support for LEON3 platform</a> and the gcc developer will consider add &lsquo;cas&rsquo; support for LEON3.</p>
+<div class="entry-content"><p>Phase-fair reader writer locks is a new class of reader-writer locks. Phase-fair rw lock has the following properties:</p>
 
-<p>Then i am working on the new atomic test case design. The first step is to provide some example about usage of atomic API. There is a good reference about atomic API design and test case design, <a href="http://concurrencykit.org/" title="Concurrency kit">Concurrency kit</a>. It has support many atomic API and also provide lots of test case for according API. Becasue phase fair lock is very important for embedded system such RTEMS, i start port the phase fair lock test case from Concurrency kit to RTEMS. Now it has been completed, code is uploaded to github <a href="https://github.com/WeiY/rtems/commit/25fb61a5252db423b8f55c0d57c151c7271ebfdb" title="phase fair test case">phase fair test case</a>. There is still some problem about the printf under the SMP environment, i will try to make it work and submit to mainline.</p>
+<pre><code>1.  Reader phases and writer phases alternate.
+2.  Writers are subject to FIFO ordering, but only with regard to other writers.
+3.  At the start of each reader phase, all currently-unsatisfied read requests are satisfied (exactly one write request is satisfied at the start of a writer phase) 
+4.  And during a reader phase, newly-issued read requests are satisfied only if there are no unsatisfied write requests pending.
+</code></pre>
+
+<p>In some sense, phase-fair locks can be understood as being a reader preference lock when held by a writer, and being a writer preference lock when held by readers, i.e., readers and writers are “polite” and yield to each other. For example:</p>
+
+<pre><code>1.  T1-&gt; thread1 issues a read request then satisfied.
+2.  T2-&gt; thread2 issues a write request then unsatisfied(because thread1 in read phase).
+3.  T3-&gt; thread3 issues a read request then unsatisfied(because thread2 writer already wait).
+4.  T4-&gt; thread4 issues a write request then unsatisfied(wait in FIFO order regard to thread2)
+5.  T5-&gt; thread1 releases read lock and then thread2 write request satisfied.
+6.  T6-&gt; thread5 issues a read request then unsatisfied.
+7.  T7-&gt; thread2 releases write lock and then thread3 and thread5 read request satisfied at the same time.
+8.  T8-&gt; thread3 and thread5 release their read lock, then thread1 write request satisfied. 
+</code></pre>
+
+<p>Reference:</p>
+
+<p> 1: <a href="http://www.rtems.org/ftp/pub/rtems/people/chrisj/source-builder/source-builder.html">http://www.rtems.org/ftp/pub/rtems/people/chrisj/source-builder/source-builder.html</a></p>
+
+<p> 2: <a href="http://concurrencykit.org/cgit/cgit.cgi/ck/tree/include/ck_pflock.h">http://concurrencykit.org/cgit/cgit.cgi/ck/tree/include/ck_pflock.h</a></p>
 </div>
 
 
@@ -116,7 +138,7 @@
   
 
 
-<time datetime="2013-07-28T23:51:00+08:00" pubdate data-updated="true">Jul 28<span>th</span>, 2013</time>
+<time datetime="2013-08-25T22:58:00+08:00" pubdate data-updated="true">Aug 25<span>th</span>, 2013</time>
       
 
 <span class="categories">
@@ -137,10 +159,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/07/07/new-implementation-of-atomic-for-rtems/" title="Previous Post: New implementation of atomic for RTEMS">&laquo; New implementation of atomic for RTEMS</a>
+        <a class="basic-alignment left" href="/blog/2013/07/28/phase-fiair-test-case/" title="Previous Post: phase fiair test case">&laquo; phase fiair test case</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/08/25/the-properties-of-phase-fair-rw-lock/" title="Next Post: the properties of phase-fair rw lock">the properties of phase-fair rw lock &raquo;</a>
       
     </p>
   </footer>
